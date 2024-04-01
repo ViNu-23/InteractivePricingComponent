@@ -158,7 +158,7 @@ function App() {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             <ul
-              style={{ listStyle: "none", fontSize: "12px", color: "#848ead" }}
+              style={{ listStyle: "none", fontSize: "14px", color: "#848ead" }}
             >
               <li>
                 <TiTick size={15} className="tick_icon" />
