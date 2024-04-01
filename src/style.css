@@ -55,7 +55,7 @@ li {
   width: 40px;
   height: 20px;
   border-radius: 20px;
-  background-color: tomato;
+  background-color: rgb(244, 153, 137);
   transition: background-color 0.4s;
 }
 
@@ -126,13 +126,9 @@ input[type="range"]::-moz-range-track {
   height: 4px;
   cursor: pointer;
   animate: 0.2s;
-  background: #1307ec;
-  border: 1px solid #333;
 }
 
 input[type="range"]::-moz-range-thumb {
-  border: 1px solid #333;
   height: 30px;
   width: 6px;
-  background: #f236a1;
 }
