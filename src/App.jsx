@@ -1,6 +1,12 @@
 import "./style.css";
+import { useState } from "react";
 import { TiTick } from "react-icons/ti";
 function App() {
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
   return (
     <>
       <div
@@ -67,7 +73,6 @@ function App() {
       </div>
       <div
         style={{
-          height: "300px",
           width: "500px",
           background: "#fff",
           position: "absolute",
@@ -76,7 +81,7 @@ function App() {
           transform: "translateX(-50%)",
           padding: "40px",
           boxShadow: "0px 20px 30px -5px rgba(127, 137, 185, 0.152073)",
-          borderRadius: "0.8rem",
+          borderRadius: "1.5rem",
         }}
       >
         <div>
@@ -85,7 +90,6 @@ function App() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-
             }}
           >
             <span style={{ color: "#848ead", fontWeight: "600" }}>
@@ -111,8 +115,45 @@ function App() {
               </span>
             </h2>
           </div>
-          <div></div>
-          <div></div>
+          <div style={{ height: "auto", margin: "25px 0px"}}>
+            <input
+              type="range"
+              min="0"
+              max="4"
+              style={{ width: "90%",padding:'10px 20px' }}
+              className="custom-slider"
+            />
+          </div>
+          <div
+            style={{
+              margin: "30px 0px",
+              color: "#848ead",
+              fontSize: "14px",
+              fontWeight: "600",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{display:'flex'}}>
+              <span style={{marginRight:'10px'}}>Monthly Billing</span>
+              <div className="toggle-switch-container">
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    onChange={handleToggle}
+                    checked={isToggled}
+                  />
+                  <span className="slider round"></span>
+                </label>
+                <span className="toggle-label"></span>
+              </div>
+            </div>
+            <div>
+              <span>Yearly Billing</span>
+              <button className="dis__btn">-25% discount</button>
+            </div>
+          </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
