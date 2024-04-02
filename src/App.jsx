@@ -2,16 +2,54 @@ import "./style.css";
 import { useState } from "react";
 import { TiTick } from "react-icons/ti";
 function App() {
-  const [isToggled, setIsToggled] = useState(false);
+  const [value, setValue] = useState(0);
+  const [review, setReview] = useState('10K');
 
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
+  const handleChange = (event) => {
+    const newValue = parseInt(event.target.value);
+    setValue(newValue);
+    setReview(calculateReview(newValue));
   };
+
+  const calculateReview = (value) => {
+    switch (value) {
+      case 0:
+        return "10K";
+      case 1:
+        return "50K";
+      case 2:
+        return "100K";
+      case 3:
+        return "500K";
+      case 4:
+        return "1M";
+      default:
+        return '';
+    }
+  };
+
+  const calculatePrice = () => {
+    switch (value) {
+      case 0:
+        return 8;
+      case 1:
+        return 12;
+      case 2:
+        return 16;
+      case 3:
+        return 24;
+      case 4:
+        return 36;
+      default:
+        return 0;
+    }
+  };
+
   return (
     <>
       <div
         style={{
-          position: "relative", // Position relative for absolute positioning of circle
+          position: "relative",
           lineHeight: "2.7rem",
           textAlign: "center",
           background: "#f1f5fe",
@@ -93,7 +131,7 @@ function App() {
             }}
           >
             <span style={{ color: "#848ead", fontWeight: "600" }}>
-              1M PAGEVIEWS
+              {review} PAGEVIEWS
             </span>
 
             <h2
@@ -103,13 +141,13 @@ function App() {
             >
               <span
                 style={{
-                  fontSize: "45px",
+                  fontSize: "50px",
                   fontWeight: "800",
                   color: "#293356",
                 }}
               >
-                $36.00
-              </span>{" "}
+                ${calculatePrice()}
+              </span>
               <span style={{ fontSize: "18px", fontWeight: "500" }}>
                 / month
               </span>
@@ -120,8 +158,10 @@ function App() {
               type="range"
               min="0"
               max="4"
-              style={{ width: "90%",padding:'10px 20px' }}
+              style={{ width: "90%", padding: '10px 20px' }}
               className="custom-slider"
+              value={value}
+        onChange={handleChange}
             />
           </div>
           <div
@@ -141,8 +181,7 @@ function App() {
                 <label className="switch">
                   <input
                     type="checkbox"
-                    onChange={handleToggle}
-                    checked={isToggled}
+                   
                   />
                   <span className="slider round"></span>
                 </label>
