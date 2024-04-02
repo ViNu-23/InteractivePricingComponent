@@ -1,4 +1,3 @@
-![FireShot Capture 092 - Vite + React - localhost](https://github.com/ViNu-23/InteractivePricingComponent/assets/59360964/15bffd78-4de6-4a06-9ca9-e770fd0281ed)
 ![FireShot Capture 093 - Vite + React - localhost](https://github.com/ViNu-23/InteractivePricingComponent/assets/59360964/2ac6561b-d988-4e5b-8465-1b04135fcadc)
 
 ### Interactive pricing component
