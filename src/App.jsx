@@ -3,6 +3,7 @@ import { setValueAction, setYearlyBillingAction } from "./redux/actions";
 import { TiTick } from "react-icons/ti";
 import { useMediaQuery } from "react-responsive";
 import { toggleTheme } from "./redux/actions";
+import { FaGithub } from "react-icons/fa";
 import "./style.css";
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -282,16 +283,25 @@ function App() {
           >
             <button className="submit__btn">Start my trial</button>
           </div>
+          
+        </div>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+          
+          <FaGithub size={20} style={{margin:'10px 8px'}}/>
+
+          <span><a href="https://github.com/ViNu-23/InteractivePricingComponent">Visit for more details </a></span>
+         
         </div>
       </div>
       <div
         style={{
           background: darkMode ? "#333333" : "#f9faff",
           width: "100vw",
-          height: isMobile ? "70vh" : "60vh",
+          height: isMobile ? "80vh" : "60vh",
           marginTop: "-100px",
         }}
       ></div>
+      
     </>
   );
 }
