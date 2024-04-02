@@ -1,9 +1,14 @@
 import "./style.css";
 import { useState } from "react";
 import { TiTick } from "react-icons/ti";
+import { useMediaQuery } from "react-responsive";
+
+
 function App() {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const [value, setValue] = useState(0);
   const [review, setReview] = useState('10K');
+  const [yearlyBilling, setYearlyBilling] = useState(false);
 
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value);
@@ -45,12 +50,22 @@ function App() {
     }
   };
 
+  const handleYearBillingChange = () => {
+    setYearlyBilling(!yearlyBilling);
+  };
+
+  const getPrice = () => {
+    const price = calculatePrice();
+    const yearlyPrice = yearlyBilling ? price * 12 : price;
+    const discountedPrice = yearlyBilling ? yearlyPrice * 0.75 : yearlyPrice;
+    return discountedPrice;
+  };
+
   return (
     <>
       <div
         style={{
           position: "relative",
-          lineHeight: "2.7rem",
           textAlign: "center",
           background: "#f1f5fe",
           height: "50vh",
@@ -75,8 +90,8 @@ function App() {
         <div
           style={{
             position: "absolute",
-            top: "15px",
-            left: "45%",
+            top: isMobile?'0px':"15px",
+            left: isMobile?'30%': "45%",
             transform: "translateX(-50%)",
             width: "100px",
             height: "100px",
@@ -88,7 +103,7 @@ function App() {
         <h2
           style={{
             fontWeight: "800",
-            fontSize: "2rem",
+            fontSize: isMobile?'30px':"40px",
             position: "relative",
             zIndex: "2",
             color: "#293356",
@@ -99,8 +114,7 @@ function App() {
         <span
           style={{
             fontWeight: 600,
-            fontSize: "1.3rem",
-            lineHeight: "2.3rem",
+            fontSize: isMobile?'16px':"20px",
             color: "#848ead",
             position: "relative",
             zIndex: "2",
@@ -111,13 +125,13 @@ function App() {
       </div>
       <div
         style={{
-          width: "500px",
+          width: isMobile?'250px':"45vw",
           background: "#fff",
           position: "absolute",
           top: "30%",
           left: "50%",
           transform: "translateX(-50%)",
-          padding: "40px",
+          padding: "30px",
           boxShadow: "0px 20px 30px -5px rgba(127, 137, 185, 0.152073)",
           borderRadius: "1.5rem",
         }}
@@ -128,6 +142,7 @@ function App() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              flexDirection:isMobile?'column':''
             }}
           >
             <span style={{ color: "#848ead", fontWeight: "600" }}>
@@ -146,19 +161,19 @@ function App() {
                   color: "#293356",
                 }}
               >
-                ${calculatePrice()}
+                ${getPrice()}
               </span>
               <span style={{ fontSize: "18px", fontWeight: "500" }}>
                 / month
               </span>
             </h2>
           </div>
-          <div style={{ height: "auto", margin: "25px 0px"}}>
+          <div style={{ margin: "25px 0px",display:'flex',justifyContent:'center',alignItems:'center'}}>
             <input
               type="range"
               min="0"
               max="4"
-              style={{ width: "90%", padding: '10px 20px' }}
+              style={{ width: "80%", padding: isMobile?'0px':'10px 20px' }}
               className="custom-slider"
               value={value}
         onChange={handleChange}
@@ -173,18 +188,19 @@ function App() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              flexDirection:isMobile?'column':''
             }}
           >
-            <div style={{display:'flex'}}>
+            <div style={{display:'flex',margin:'10xp 0px'}}>
               <span style={{marginRight:'10px'}}>Monthly Billing</span>
               <div className="toggle-switch-container">
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                   
-                  />
-                  <span className="slider round"></span>
-                </label>
+              <label className="switch">
+          <input
+            type="checkbox"
+            onChange={handleYearBillingChange}
+          />
+          <span className="slider round"></span>
+        </label>
                 <span className="toggle-label"></span>
               </div>
             </div>
@@ -194,7 +210,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "space-between",flexDirection:isMobile?'column':'' }}>
           <div>
             <ul
               style={{ listStyle: "none", fontSize: "14px", color: "#848ead" }}
@@ -215,13 +231,13 @@ function App() {
               </li>
             </ul>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center",justifyContent:'center' ,marginTop:'20px'}}>
             <button className="submit__btn">Start my trial</button>
           </div>
         </div>
       </div>
       <div
-        style={{ background: "#f9faff", width: "100vw", height: "50vh" }}
+        style={{ background: "#f9faff", width: "100vw", height: isMobile?'60vh':"50vh" }}
       ></div>
     </>
   );
